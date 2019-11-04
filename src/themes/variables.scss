@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+
+$eliteownage-app-primary: mat-palette($mat-lime);
+$eliteownage-app-accent:  mat-palette($mat-purple);
+$eliteownage-app-warn:    mat-palette($mat-red);
+
+$primary: mat-color($eliteownage-app-primary);
+$accent: mat-color($eliteownage-app-accent);
+$warn: mat-color($eliteownage-app-warn);

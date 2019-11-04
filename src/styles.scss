@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+@import './themes/eliteownage.scss';
+
+@import './themes/components/chat.scss';
+
+@include chat-theme($eliteownage-app-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; }

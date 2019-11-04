@@ -1,0 +1,26 @@
+<h2>Live Chat</h2>
+
+<ul class="chat-messages">
+    <li *ngFor="let chatMessage of messages | async">
+        <div [@fromMessage]="chatMessage.sentBy === 'sharkbot' ? 'final' : 'none'" [@toMessage]="chatMessage.sentBy === 'user' ? 'final' : 'none'"
+            [ngClass]="{'from': chatMessage.sentBy === 'sharkbot', 'to': chatMessage.sentBy === 'user'}" class="chat-container">
+            <div [ngClass]="{'from': chatMessage.sentBy === 'sharkbot', 'to': chatMessage.sentBy === 'user'}" class="chat">
+                <div class="chat-time"></div>
+                <div class="chat-username">{{chatMessage.sentBy}}</div>
+                <div class="chat-message">{{chatMessage.content}}</div>
+            </div>
+        </div>
+    </li>
+</ul>
+
+<label *ngIf="!editName" (click)="editName = true" class="line-height-2p5 margin-right">{{userName.value}}</label>
+<mat-form-field *ngIf="editName">
+    <input matInput [formControl]="userName" (keyup.enter)="editName = false" placeholder="Enter your name" type="text" />
+</mat-form-field>
+<button mat-raised-button *ngIf="editName" (click)="editName = false" class="margin-right">ok</button>
+
+<mat-form-field>
+    <input matInput [formControl]="message" (keyup.enter)="sendMessage()" placeholder="Chat with sharkbot" type="text">
+    <input matInput [formControl]="sentMessage" type="text" class="chat-input-animation" [@sendMessage]="message.value === '' ? 'sent' : 'none'">
+</mat-form-field>
+<button (click)="sendMessage()" mat-raised-button>Send</button>
